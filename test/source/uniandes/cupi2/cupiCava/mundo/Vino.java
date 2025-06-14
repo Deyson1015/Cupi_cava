@@ -348,7 +348,7 @@ public class Vino
 
     private void verificarInvariante() {
     	assert nombre != null && !presentacion.trim().isEmpty() : "La presentación no puede estar vacia o ser nula.";
-    	assert anhoElaboracion > 0 : "El año de elaboración debe ser menor o igual al año actual.";
+    	assert anhoElaboracion > 0 : "El año de elaboración debe ser mayor que 0.";
     	assert contenidoAzucar >= 0 : "El contenido de azucar debe ser mayor o igual a 0.";
     	assert tipo != null && !tipo.trim().isEmpty() : "El tipo de vino no puede estar vacio o ser nulo.";
     	assert color != null && !color.trim().isEmpty() : "El color del vino no puede estar vacio o ser nulo.";
