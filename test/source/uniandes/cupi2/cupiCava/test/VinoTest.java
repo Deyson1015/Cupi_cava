@@ -12,6 +12,7 @@ package uniandes.cupi2.cupiCava.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -202,7 +203,14 @@ public class VinoTest
      */
     public void testCompararPorColor( )
     {
-   	 // TODO Parte2 PuntoO: Implemente el método para que cumpla los casos de prueba
+    	 // Caso 1: vino1 es igual a vino4 en color
+        assertEquals("Los colores deberían ser iguales", 0, vino1.compararPorColor(vino4));
+
+        // Caso 2: vino1 es menor que vino2 en color
+        assertTrue("vino1 debe ser menor que vino2 por color", vino1.compararPorColor(vino2) < 0);
+
+        // Caso 3: vino3 es igual a vino1 en color
+        assertEquals("vino3 y vino1 deben tener el mismo color", 0, vino3.compararPorColor(vino1));
    }
 
     /**
@@ -216,6 +224,13 @@ public class VinoTest
      */
     public void testCompararPorLugarOrigen( )
     {
-   	 // TODO Parte2 PuntoP: Implemente el método para que cumpla los casos de prueba
+    	  // Caso 1: vino1 es igual a vino4 por lugar de origen
+        assertEquals("Los lugares de origen deberían ser iguales", 0, vino1.compararPorLugarOrigen(vino4));
+
+        // Caso 2: vino1 es menor que vino2 por lugar de origen
+        assertTrue("vino1 debe ser menor que vino2 por lugar de origen", vino1.compararPorLugarOrigen(vino2) < 0);
+
+        // Caso 3: vino3 es igual a vino1 por lugar de origen
+        assertEquals("vino3 y vino1 deben tener el mismo lugar de origen", 0, vino3.compararPorLugarOrigen(vino1));
    }
 }

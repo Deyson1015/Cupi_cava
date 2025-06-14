@@ -13,7 +13,6 @@ package uniandes.cupi2.cupiCava.mundo;
 /**
  * Clase que representa un vino almacenado en la Cupi-Cava.<br>
  * <b>inv: </b> <br>
- * TODO Parte1 PuntoA: Declare la invariante de la clase.
  */
 public class Vino
 {
@@ -135,14 +134,17 @@ public class Vino
      */
     public Vino( String pNombre, String pPresentacion, int pAnhoElaboracion, double pContenidoAzucar, String pTipo, String pColor, String pLugarOrigen, String pImagen )
     {
-        nombre = pNombre;
-        presentacion = pPresentacion;
-        anhoElaboracion = pAnhoElaboracion;
-        contenidoAzucar = pContenidoAzucar;
-        tipo = pTipo;
-        color = pColor;
-        lugarOrigen = pLugarOrigen;
-        imagen = pImagen;
+        
+    	this.nombre = pNombre;
+        this.presentacion = pPresentacion;
+        this.anhoElaboracion = pAnhoElaboracion;
+        this.contenidoAzucar = pContenidoAzucar;
+        this.tipo = pTipo;
+        this.color = pColor;
+        this.lugarOrigen = pLugarOrigen;
+        this.imagen = pImagen;
+        
+        verificarInvariante();
 
     }
 
@@ -156,7 +158,7 @@ public class Vino
      */
     public String darNombre( )
     {
-        return nombre;
+        return this.nombre;
     }
 
     /**
@@ -165,7 +167,7 @@ public class Vino
      */
     public String darPresentacion( )
     {
-        return presentacion;
+        return this.presentacion;
     }
 
     /**
@@ -174,7 +176,7 @@ public class Vino
      */
     public int darAnhoElaboracion( )
     {
-        return anhoElaboracion;
+        return this.anhoElaboracion;
     }
 
     /**
@@ -183,7 +185,7 @@ public class Vino
      */
     public double darContenidoAzucar( )
     {
-        return contenidoAzucar;
+        return this.contenidoAzucar;
     }
 
     /**
@@ -192,7 +194,7 @@ public class Vino
      */
     public String darTipo( )
     {
-        return tipo;
+        return this.tipo;
     }
 
     /**
@@ -201,7 +203,7 @@ public class Vino
      */
     public String darColor( )
     {
-        return color;
+        return this.color;
     }
 
     /**
@@ -210,7 +212,7 @@ public class Vino
      */
     public String darLugarOrigen( )
     {
-        return lugarOrigen;
+        return this.lugarOrigen;
     }
 
     /**
@@ -219,9 +221,24 @@ public class Vino
      */
     public String darImagen( )
     {
-        return imagen;
+        return this.imagen;
     }
 
+    // Metodo que centraliza la logica de comparación de cadenas
+    private int compararString(String actual, String otro) {
+    	int comparacion = actual.compareTo(otro);
+    	return comparacion == 0 ? 0 : (comparacion < 0 ? -1 : 1);
+    }
+    
+    // Metodo que centraliza la logica de comparación de números decimales
+    private int compararDecimales(double actual, double otro) {
+    	return actual == otro ? 0 : (actual < otro ? -1 : 1);
+    }
+    
+    // Metodo que centraliza la logica de comparación de números eneteros
+    private int compararEnteros(int actual, int otro) {
+    	return actual == otro ? 0 : (actual < otro ? -1 : 1);
+    }
     /**
      * Compara dos vinos según el nombre. <br>
      * @param pVino Vino contra el cual se está comparando. pVino !=null.
@@ -231,7 +248,8 @@ public class Vino
      */
     public int compararPorNombre( Vino pVino )
     {
-    	 // TODO Parte2 PuntoA: Implemente el método según la documentación dada.
+    	assert pVino != null : "El vino no puede ser nulo.";
+    	return compararString(this.nombre, pVino.darNombre());
     }
 
     /**
@@ -243,7 +261,9 @@ public class Vino
      */
     public int compararPorPresentacion( Vino pVino )
     {
-   	 // TODO Parte2 PuntoB: Implemente el método según la documentación dada.
+    	assert pVino != null : "El vino no puede ser nulo.";
+    	return compararString(this.presentacion, pVino.darPresentacion());
+    		
    }
 
     /**
@@ -255,7 +275,9 @@ public class Vino
      */
     public int compararPorAnhoElaboracion( Vino pVino )
     {
-   	 // TODO Parte2 PuntoC: Implemente el método según la documentación dada.
+    	assert pVino != null : "El vino no puede ser nulo.";
+    	return compararEnteros(this.anhoElaboracion, pVino.darAnhoElaboracion());
+    			
    }
 
     /**
@@ -267,7 +289,8 @@ public class Vino
      */
     public int compararPorContenidoAzucar( Vino pVino )
     {
-   	 // TODO Parte2 PuntoD: Implemente el método según la documentación dada.
+    	assert pVino != null : "El vino no puede ser nulo.";
+    	return compararDecimales(this.contenidoAzucar, pVino.darContenidoAzucar());
    }
 
     /**
@@ -279,8 +302,9 @@ public class Vino
      */
     public int compararPorTipo( Vino pVino )
     {
-   	 // TODO Parte2 PuntoE: Implemente el método según la documentación dada.
-   }
+    	assert pVino != null : "El vino no puede ser nulo.";
+    	return compararString(this.tipo, pVino.darTipo());
+    }
 
     /**
      * Compara dos vinos según el color. <br>
@@ -291,7 +315,8 @@ public class Vino
      */
     public int compararPorColor( Vino pVino )
     {
-   	 // TODO Parte2 PuntoF: Implemente el método según la documentación dada.
+    	assert pVino != null : "El vino no puede ser nulo.";
+    	return compararString(this.color, pVino.darColor());
     }
 
     /**
@@ -303,8 +328,10 @@ public class Vino
      */
     public int compararPorLugarOrigen( Vino pVino )
     {
-   	 // TODO Parte2 PuntoG: Implemente el método según la documentación dada.
-   }
+    	assert pVino != null : "El vino no puede ser nulo.";
+    	return compararString(this.lugarOrigen, pVino.darLugarOrigen());
+  
+    }
 
     /**
      * Retorna una cadena con el nombre del vino.
@@ -312,12 +339,21 @@ public class Vino
      */
     public String toString( )
     {
-        return nombre;
+        return this.nombre;
     }
 
     // -----------------------------------------------------------------
     // Invariante
     // -----------------------------------------------------------------
 
-    // TODO Parte1 PuntoB: Documente e implemente el método verificarInvariante. Si lo desea puede crear métodos privados en esta parte.
+    private void verificarInvariante() {
+    	assert nombre != null && !presentacion.trim().isEmpty() : "La presentación no puede estar vacia o ser nula.";
+    	assert anhoElaboracion > 0 : "El año de elaboración debe ser mayor que 0.";
+    	assert contenidoAzucar >= 0 : "El contenido de azucar debe ser mayor o igual a 0.";
+    	assert tipo != null && !tipo.trim().isEmpty() : "El tipo de vino no puede estar vacio o ser nulo.";
+    	assert color != null && !color.trim().isEmpty() : "El color del vino no puede estar vacio o ser nulo.";
+    	assert lugarOrigen != null && !lugarOrigen.trim().isEmpty() : "El lugar de origen no puede estar vacio o ser nulo.";
+    	assert imagen != null && !imagen.trim().isEmpty() : "La imagen del vino no puede estar vacia o ser nula.";
+    }
+       
 }

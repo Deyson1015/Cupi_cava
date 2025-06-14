@@ -207,8 +207,17 @@ public class CupiCavaTest
     {
         setupEscenario3( );
 
-        
-       	 // TODO Parte2 PuntoQ: Implemente el método para que cumpla los casos de prueba
+        // Ordenar por nombre
+        cupiCava.ordenarVinosPorNombre();
+
+        // Obtener los vinos ordenados
+        ArrayList<Vino> vinos = cupiCava.darVinos();
+
+        // Verificar que están en orden alfabético esperado
+        assertEquals("Alamos Chardonnay", vinos.get(0).darNombre());
+        assertEquals("Camino Real", vinos.get(1).darNombre());
+        assertEquals("Castillo de Javier", vinos.get(2).darNombre());
+        assertEquals("Conde de Rioja", vinos.get(3).darNombre());
        
     }
 
@@ -225,8 +234,20 @@ public class CupiCavaTest
     public void testOrdenarPorAnhoElaboracion( )
     {
         setupEscenario3( );
+        // Ordenar por año de elaboración
+        cupiCava.ordenarVinosPorAnhoElaboracion();
 
-        // TODO Parte2 PuntoR: Implemente el método para que cumpla los casos de prueba
+        // Obtener los vinos ordenados
+        ArrayList<Vino> vinos = cupiCava.darVinos();
+
+        // Verificar orden esperado (del más antiguo al más reciente)
+        assertEquals(2010, vinos.get(0).darAnhoElaboracion());
+        assertEquals(2010, vinos.get(1).darAnhoElaboracion());
+        assertEquals(2008, vinos.get(2).darAnhoElaboracion());
+        assertEquals(2008, vinos.get(3).darAnhoElaboracion());
+        assertEquals(2006, vinos.get(4).darAnhoElaboracion());
+        assertEquals(2006, vinos.get(5).darAnhoElaboracion());
+        assertEquals(2000, vinos.get(6).darAnhoElaboracion());
     }
 
     /**
@@ -242,8 +263,16 @@ public class CupiCavaTest
     public void testOrdenarVinosPorLugarOrigen( )
     {
         setupEscenario3( );
+        
+        // Ordenar por lugar de origen
+        cupiCava.ordenarVinosPorLugarOrigen();
 
-        // TODO Parte2 PuntoS: Implemente el método para que cumpla los casos de prueba
+        // Obtener los vinos ordenados
+        ArrayList<Vino> vinos = cupiCava.darVinos();
+
+        // Verificar orden alfabético por lugar de origen
+        assertEquals("Chile", vinos.get(0).darLugarOrigen());
+        assertEquals("Colombia", vinos.get(1).darLugarOrigen());
     }
 
     /**
