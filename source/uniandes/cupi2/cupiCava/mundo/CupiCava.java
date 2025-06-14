@@ -11,11 +11,12 @@
 package uniandes.cupi2.cupiCava.mundo;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Clase que representa la Cupi-Cava. <br>
  * <b>inv: </b> <br>
- * TODO Parte1 PuntoC: Declare la invariante de la clase.
  */
 public class CupiCava
 {
@@ -38,7 +39,8 @@ public class CupiCava
      */
     public CupiCava( )
     {
-        vinos = new ArrayList<Vino>( );
+        this.vinos = new ArrayList<Vino>( );
+        verificarInvariante();
     }
 
     // -------------------------------------------------------------
@@ -86,7 +88,23 @@ public class CupiCava
      */
     public Vino buscarBinarioPorNombre( String pNombre )
     {
-   	 // TODO Parte2 PuntoH: Implemente el método según la documentación dada.
+    	int izquierda = 0;
+    	int derecha = vinos.size() -1;
+    	
+    	while (izquierda <= derecha) {
+    		int medio = (izquierda + derecha) / 2;
+    		Vino vinoMedio = vinos.get(medio);
+    		int comparacion = vinoMedio.darNombre().compareToIgnoreCase(pNombre);
+    		
+    		if (comparacion == 0) {
+    			return vinoMedio;
+    		}
+    		
+    		izquierda = comparacion <  0 ? medio + 1 : derecha;
+    		derecha = comparacion > 0 ? medio -1 : izquierda;
+    	}
+    	
+    	return null;
     }
 
     /**
@@ -140,7 +158,9 @@ public class CupiCava
      */
     public boolean agregarVino( String pNombre, String pPresentacion, int pAnhoElaboracion, double pContenidoAzucar, String pTipo, String pColor, String pLugarOrigen, String pImagen )
     {
+    	
         Vino buscado = buscarVino( pNombre );
+  
         boolean agregada = false;
 
         if( buscado == null )
@@ -186,9 +206,25 @@ public class CupiCava
     // -----------------------------------------------------------------
     // Invariante
     // -----------------------------------------------------------------
+    
 
-    // TODO Parte1 PuntoD: Documente e implemente el método verificarInvariante. Si lo desea puede crear métodos privados en esta parte.
-
+    private void verificarInvariante() {
+    	assert vinos != null && !vinos.isEmpty() : "La lista no puede estar vacia o ser nula.";
+    	
+    	Set<String> nombres = new HashSet<>();
+    	
+    	for ( int i = 0; i < vinos.size(); i++) {
+    		Vino vino = vinos.get(i);
+    		assert vino != null : "El vino en la posición" + i + "no puede ser nulo.";
+    		
+    		String nombre = vino.darNombre();
+    		
+    		assert !nombres.contains(nombre) : "El vino con" + nombre + "ya existe en la lista";
+    		nombres.add(nombre);
+    	}
+    	
+    }
+    	
     // -----------------------------------------------------------------
     // Puntos de Extensión
     // -----------------------------------------------------------------
